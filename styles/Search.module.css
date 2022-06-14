@@ -1,0 +1,25 @@
+.filter {
+  padding: 0 50px;
+  width: 60%;
+}
+
+.filter input {
+  height: 2.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 20px;
+  padding: 0 2rem;
+}
+
+.filter input:focus {
+  border: 2px solid #326bb4;
+  outline: none;
+}
+
+@media (max-width: 992px) {
+  .filter {
+    padding: 0 10px;
+    width: 90%;
+  }
+}

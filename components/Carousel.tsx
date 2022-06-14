@@ -75,7 +75,7 @@ const Carousel: React.FC<CarouselProps> = ({ cars }) => {
   };
 
   return (
-    <main className={CarousalStyles.container}>
+    <section className={CarousalStyles.container}>
       <Slider {...settings} ref={slider}>
         {cars.map((car: carProps) => (
           <div key={car.id}>
@@ -115,7 +115,7 @@ const Carousel: React.FC<CarouselProps> = ({ cars }) => {
       <div className={CarousalStyles.buttonRight}>
         <img width={40} src='./icons/chevron-circled.svg' alt='' onClick={showNext} />
       </div>
-    </main>
+    </section>
   );
 };
 

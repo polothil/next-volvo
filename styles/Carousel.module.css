@@ -1,5 +1,5 @@
 .container {
-  width: 97vw;
+  width: 96vw;
   /* padding-left: 1vw; */
   /* overflow: hidden; */
 }
@@ -85,6 +85,13 @@
   }
 
   .buttons {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .buttonLeft,
+  .buttonRight {
     display: none;
   }
 }

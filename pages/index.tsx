@@ -1,8 +1,19 @@
 import type { NextPage } from 'next';
-import carsData from '../cars.json';
+// import carsData from '../cars.json';
 import Carousel from '../components/Carousel';
 import { useEffect, useState } from 'react';
 import Search from '../components/Search';
+import { server } from '../config';
+
+type HomeProps = {
+  carsData: {
+    id: string;
+    modelName: string;
+    bodyType: string;
+    modelType: string;
+    imageUrl: string;
+  }[];
+};
 
 type carProps = {
   id: string;
@@ -12,7 +23,7 @@ type carProps = {
   imageUrl: string;
 };
 
-const Home: NextPage = () => {
+const Home: NextPage<HomeProps> = ({ carsData }) => {
   const [cars, setCars] = useState<carProps[]>(carsData);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCars, setFilteredCars] = useState<carProps[]>([]);
@@ -44,3 +55,14 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getStaticProps = async () => {
+  const res = await fetch(`${server}/api/cars`);
+  const carsData = await res.json();
+
+  return {
+    props: {
+      carsData,
+    },
+  };
+};

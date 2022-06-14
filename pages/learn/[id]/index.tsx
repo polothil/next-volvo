@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Meta from '../../../components/Meta';
 import { server } from '../../../config';
+import { View, Button } from 'vcc-ui';
 
 type carProps = {
   id: string;
@@ -43,14 +44,18 @@ const learn = () => {
           {carDetails && carDetails.length > 0 && (
             <>
               <Meta title={carDetails[0].id} description={carDetails[0].modelName} />
-              <h1>{carDetails[0].modelName}</h1>
-              <h2>{carDetails[0].bodyType.toUpperCase()}</h2>
-              <h2>{carDetails[0].modelType.toUpperCase()}</h2>
-              <img src={carDetails[0].imageUrl} alt='' />
-              <div className='btn-group'>
-                <button>
-                  <Link href='/'>Go Back</Link>
-                </button>
+              <div className='content'>
+                <h1>{carDetails[0].modelName}</h1>
+                <h2>{carDetails[0].bodyType.toUpperCase()}</h2>
+                <h2>{carDetails[0].modelType.toUpperCase()}</h2>
+                <img src={carDetails[0].imageUrl} alt='' />
+                <div className='btn-group'>
+                  <View maxWidth='280'>
+                    <Button>
+                      <Link href='/'>Go Back</Link>
+                    </Button>
+                  </View>
+                </div>
               </div>
             </>
           )}

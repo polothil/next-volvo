@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Meta from '../../../components/Meta';
+import { View, Button } from 'vcc-ui';
 
 const learn = () => {
   const router = useRouter();
@@ -10,10 +11,13 @@ const learn = () => {
     <>
       <Meta />
       <div>Shop {id}</div>
+      <br />
       <div className='btn-group'>
-        <button>
-          <Link href='/'>Go Back</Link>
-        </button>
+        <View maxWidth='280'>
+          <Button>
+            <Link href='/'>Go Back</Link>
+          </Button>
+        </View>
       </div>
     </>
   );

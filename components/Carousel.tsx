@@ -1,9 +1,9 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { useRef } from 'react';
-import bigChevron from './icons/chevron-circled.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Card } from 'vcc-ui';
 
 import CarousalStyles from '../styles/Carousel.module.css';
 import Link from 'next/link';
@@ -84,7 +84,9 @@ const Carousel: React.FC<CarouselProps> = ({ cars }) => {
               {car.modelName} <span>{car.modelType}</span>
             </div>
             <div className={CarousalStyles.card}>
-              <img src={car.imageUrl} alt='' />
+              <Card>
+                <img src={car.imageUrl} alt='' />
+              </Card>
             </div>
 
             <div className={CarousalStyles.links}>

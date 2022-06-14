@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Carousel from '../components/Carousel';
 import { useEffect, useState } from 'react';
 import Search from '../components/Search';
+import { TextInput } from 'vcc-ui';
 import { server } from '../config';
 
 type HomeProps = {
@@ -61,7 +62,16 @@ const Home: NextPage<HomeProps> = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <Search filter={setSearchTerm} value={searchTerm} />
+          <div className='filter'>
+            <TextInput
+              value={searchTerm}
+              label='Filter by car type'
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+          </div>
+          {/* <Search filter={setSearchTerm} value={searchTerm} /> */}
           {cars && cars.length > 0 && searchTerm.length < 1 ? (
             <>
               <Carousel cars={cars} />

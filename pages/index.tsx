@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import carsData from '../public/api/cars.json';
 import Carousel from '../components/Carousel';
 import { useEffect, useState } from 'react';
 import Search from '../components/Search';
@@ -24,31 +23,53 @@ type carProps = {
 };
 
 const Home: NextPage<HomeProps> = () => {
-  const [cars, setCars] = useState<carProps[]>(carsData);
+  const [cars, setCars] = useState<carProps[]>();
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCars, setFilteredCars] = useState<carProps[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setCars(carsData);
-    if (searchTerm !== '') {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(`${server}/api/cars.json`);
+        const data = await res.json();
+        setCars(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (cars && searchTerm !== '') {
       const newList: carProps[] = cars.filter((car) => {
         return car.bodyType.toLowerCase().includes(searchTerm.toLowerCase());
       });
       setFilteredCars(newList);
     } else {
-      setFilteredCars(cars);
+      cars && setFilteredCars(cars);
     }
   }, [searchTerm, cars]);
 
   return (
     <>
-      <Search filter={setSearchTerm} value={searchTerm} />
-      {cars.length > 0 && searchTerm.length < 1 ? (
-        <>
-          <Carousel cars={cars} />
-        </>
+      {loading ? (
+        <div>Loading...</div>
       ) : (
-        <Carousel cars={filteredCars} />
+        <>
+          <Search filter={setSearchTerm} value={searchTerm} />
+          {cars && cars.length > 0 && searchTerm.length < 1 ? (
+            <>
+              <Carousel cars={cars} />
+            </>
+          ) : (
+            <Carousel cars={filteredCars} />
+          )}
+        </>
       )}
     </>
   );

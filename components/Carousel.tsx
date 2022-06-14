@@ -1,12 +1,12 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { useRef } from 'react';
-import { Card, Link } from 'vcc-ui';
-
+import bigChevron from './icons/chevron-circled.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import CarousalStyles from '../styles/Carousel.module.css';
+import Link from 'next/link';
 
 type CarouselProps = {
   cars: {
@@ -78,37 +78,43 @@ const Carousel: React.FC<CarouselProps> = ({ cars }) => {
     <main className={CarousalStyles.container}>
       <Slider {...settings} ref={slider}>
         {cars.map((car: carProps) => (
-          <div className={CarousalStyles.sliderCard} key={car.id}>
+          <div key={car.id}>
             <div className={CarousalStyles.type}>{car.bodyType}</div>
             <div className={CarousalStyles.title}>
               {car.modelName} <span>{car.modelType}</span>
             </div>
-            {/* <Card> */}
-            <img src={car.imageUrl} alt='' />
-            {/* </Card> */}
+            <div className={CarousalStyles.card}>
+              <img src={car.imageUrl} alt='' />
+            </div>
+
             <div className={CarousalStyles.links}>
-              {/* <Link href={`learn/${car.id}`} arrow='right'>
-                LEARN
+              <Link href={`learn/${car.id}`}>
+                <div className={CarousalStyles.linkItem}>
+                  LEARN <img width={15} src='./icons/chevron-small.svg' alt='' />
+                </div>
               </Link>
-              <Link href={`shop/${car.id}`} arrow='right'>
-                SHOP
-              </Link> */}
+
+              <Link href={`shop/${car.id}`}>
+                <div className={CarousalStyles.linkItem}>
+                  SHOP <img width={15} src='./icons/chevron-small.svg' alt='' />
+                </div>
+              </Link>
             </div>
           </div>
         ))}
       </Slider>
-      {/* <div className={CarousalStyles.buttonsLeft}>
+      <div className={CarousalStyles.buttonLeft}>
         <img
           width={40}
-          src={bigChevron}
+          src='./icons/chevron-circled.svg'
           alt=''
           style={{ transform: 'rotate(180deg)' }}
           onClick={showPrevious}
         />
       </div>
-      <div className={CarousalStyles.buttonsRight}>
-        <img width={40} src={bigChevron} alt='' onClick={showNext} />
-      </div> */}
+      <div className={CarousalStyles.buttonRight}>
+        <img width={40} src='./icons/chevron-circled.svg' alt='' onClick={showNext} />
+      </div>
     </main>
   );
 };

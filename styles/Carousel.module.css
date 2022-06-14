@@ -1,15 +1,7 @@
 .container {
-  width: 90vw;
-  margin: 0 auto;
-  margin-top: 20px;
-}
-
-.slick-slide > div {
-  margin: 0 10px;
-}
-
-.slick-list {
-  margin: 0 -10px;
+  width: 97vw;
+  /* padding-left: 1vw; */
+  /* overflow: hidden; */
 }
 
 .slick-arrow.slick-prev,
@@ -34,25 +26,25 @@
   opacity: 1;
 }
 
-.sliderCard .type {
+.type {
   color: #707070;
   font-weight: 500;
   font-size: 24px;
 }
 
-.sliderCard .title {
+.title {
   color: #141414;
   font-weight: 700;
   margin-bottom: 30px;
   font-size: 20px;
 }
 
-.sliderCard .title span {
+.title span {
   color: #707070;
   font-weight: 500;
 }
 
-.sliderCard .links {
+.links {
   margin: 30px 0;
   display: flex;
   justify-content: center;
@@ -61,21 +53,33 @@
   color: #326bb4;
 }
 
-.sliderCard .links a {
+.linkItem {
   display: flex;
   align-items: center;
-  text-decoration: none;
-  color: #326bb4;
-  font-weight: 600;
+  gap: 10px;
+  cursor: pointer;
 }
 
-.sliderCard .links img {
-  margin-left: 10px;
+.linkItem img {
   margin-top: 2px;
 }
 
+.card {
+  border: 1px solid #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #fff;
+}
+
+.card img {
+  width: 97%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 @media (max-width: 1200px) {
-  .sliderCard .title {
+  .title {
     display: flex;
     flex-direction: column;
   }
